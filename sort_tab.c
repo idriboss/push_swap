@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:09:33 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/26 20:09:34 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/06/29 05:10:59 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		partition(int array[], int start, int end);
 void	quick_sort(int array[], int start ,int end);
-void	swap(int *x, int *y);
+static void	swap(int *x, int *y);
 
 void	sort_array(int array[], int lentgh)
 {
@@ -55,7 +55,7 @@ int	partition(int array[], int start, int end)
 	return (i);
 }
 
-void	swap(int *x, int *y)
+static void	swap(int *x, int *y)
 {
 	int	temp;
 

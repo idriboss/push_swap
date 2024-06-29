@@ -16,7 +16,7 @@ CC = cc
 
 FLAGS = -Wall -Werror -Wextra
 
-LIBFT_PATH = ../libft/
+LIBFT_PATH = ./libft/
 
 LIBFT = libft.a
 
@@ -28,8 +28,8 @@ FILES = 	$(wildcard $(SRC_PATH)/*.c)	\
 
 all : $(NAME)
 
-$(NAME) : $(FILES) $(LIBFT)
-		@$(CC) $(FLAGS) $(LIBFT_PATH)$(LIBFT) $(FILES) -o $(NAME)
+$(NAME) : $(LIBFT) $(FILES)
+		@$(CC) $(FLAGS) $(FILES) $(LIBFT_PATH)$(LIBFT) -o $(NAME)
 		@echo "$(GREEN)$(NAME) done ✅$(END)"
 
 $(LIBFT) : $(LIBFT_FILES)
@@ -42,3 +42,5 @@ fclean : clean
 		@make fclean -C $(LIBFT_PATH)
 		@rm $(NAME)
 		@echo "$(RED)$(NAME) deleted$(END)"
+
+re : fclean all	

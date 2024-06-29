@@ -1,65 +1,92 @@
-#include "../libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/29 08:36:03 by ibaby             #+#    #+#             */
+/*   Updated: 2024/06/29 09:09:39 by ibaby            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 #include <stdlib.h>
 #include <unistd.h>
 
-int	*parse(int argc, char **argv)
-{
-	int	i;
-	int	count;
-	int	*array;
+void	check_number(long num, int num_count, t_data *data, char *arg);
 
-	i = 1;
-	count = 0;
-	check_args(argv);
-	while (i < argc - 1)
+void	input_to_array(char **argv, t_data *data)
+{
+	int		i;
+	
+	data->join_args = ft_strdup(argv[1]);
+	if (data->join_args == NULL)
+		free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
+	i = 2;
+	while (argv[i] != NULL)
 	{
-		array = get_input(array, &count, argv[1]);
-	}
-}
-
-int	*get_input(int *array, int *array_size, char *str)
-{
-	int	*buffer;
-	int	num_count;
-	int	i;
-
-	num_count = count_number(str);
-	buffer = ft_realloc(array, *array_size, num_count, sizeof(int));
-	if (buffer == NULL)
-		free_and_exit(MALLOC_FAILED, EXIT_FAILURE);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		while (!(str[i] >= '0' || str[i] <= '9') && str[i] != '\0')
-			i++;
-		if (str[i] == '\0')
-			break;
-		buffer[*array_size] = ft_atoi(str + i);
-		++*array_size;
-		if (str[i] == '-' || str[i] == '+')
-			i++;
-		while (str[i] >= '0' && str[i] <= '9')
-			++i;
-	}
-	return (buffer);
-}
-
-int	count_number(char *str)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (!(str[i] >= '0' || str[i] <= '9') && str[i] != '\0')
+		data->join_args = multi_re_strjoin(3, data->join_args, " ", argv[i]);
+		if (data->join_args == NULL)
+			free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
 		++i;
-	while (str[i] != '\0')
-	{
-		while (str[i] >= '0' && str[i] <= '9')
-			++i;
-		++count;
-		while (!(str[i] >= '0' || str[i] <= '9') && str[i] != '\0')
-			++i;
 	}
-	return (count);
+	if (ft_atol(data->join_args) == 0)
+		free_and_exit("input invalid", EXIT_FAILURE, data);
+	parse(data->join_args, data);
+}
+
+void	parse(char *arg, t_data *data)
+{
+	int		i;
+	int		j;
+	long	num;
+
+	i = 0;
+	j = 0;
+	while (arg[i] == ' ')
+		++i;
+	while (arg[i] != '\0')
+	{
+		if ((arg[i] < '0' || arg[i] > '9') && arg[i] != '+' && arg[i] != '-')
+			free_and_exit("input invalid", EXIT_FAILURE, data);
+		data->input = ft_realloc(data->input, j, j + 1, sizeof(int));
+		if (data->input == NULL)
+			free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
+		num = ft_atol(arg + i);
+		check_number(num, j, data, arg + i);
+		data->input[j] = (int)num;
+		if (arg[i] == '-' || arg[i] == '+')
+			++i;
+		while (arg[i] >= '0' && arg[i] <= '9')
+			++i;
+		while (arg[i] == ' ')
+			++i;
+		j++;
+	}
+	data->input_count = j;
+}
+
+#include <stdio.h>
+
+void	check_number(long num, int num_count, t_data *data, char *arg)
+{
+	int	i;
+
+	i = 0;
+	if (arg[0] == '-' || arg[0] == '+')
+		i++;
+	while (arg[i] >= '0' && arg[i] <= '9')
+		i++;
+	if (i > 12)
+		free_and_exit("number too large", EXIT_FAILURE, data);
+	if (num < INT_MIN || num > INT_MAX)
+		free_and_exit("number too large", EXIT_FAILURE, data);
+	i = 0;
+	while (i < num_count)
+	{
+		if (data->input[i] == (int)num)
+			free_and_exit("number already exist", EXIT_FAILURE, data);
+		i++;
+	}
 }

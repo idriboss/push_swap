@@ -1,30 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   finish.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:09:30 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/26 20:13:58 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/06/29 08:54:31 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-void	print_err_and_exit(const char *err, int code, bool errno, t_data *data)
+#include "push_swap.h"
+
+void	destroy_stack(t_stack *stack)
 {
-	if (errno == true)
+	t_node	*node;
+	t_node	*temp;
+	
+	if (stack == NULL)
+		return ;
+	if (stack->first == NULL)
 	{
-		perror(err);
+		free(stack);
+		return ;
 	}
-	else if (err != NULL)
+	temp = stack->first;
+	node = temp->next;
+	if (node == NULL)
 	{
-		ft_putendl_fd((char *)err, STDERR_FILENO);
+		free(temp);
+		free(stack);
+		return ;
 	}
-	exit(code);
+	while (node != NULL)
+	{
+		node = temp->next;
+		free(temp);
+		temp = node;
+	}
+	free(stack);
 }
 
-void	free_and_exit(const char *err, int code, t_data *data, bool errno)
+void	free_and_exit(const char *err, int code, t_data *data)
 {
-	print_err_and_exit(err, code, errno, data);
+	destroy_stack(data->stack_a);
+	destroy_stack(data->stack_b);
+	free(data->input);
+	free(data->join_args);
+	print_err_and_exit(err, code, false);
 }
