@@ -66,3 +66,18 @@ bool	is_sorted(t_data *data)
 	}
 	return (true);
 }
+
+int	stack_size(t_stack *stack)
+{
+	t_node	*node;
+	int		i;
+
+	i = 1;
+	node = stack->first->next;
+	while (node)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
+}

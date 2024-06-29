@@ -12,10 +12,14 @@ int main(int argc, char **argv)
 	if (data.input_count == 2)
 	{
 		sort_2(&data);
+		free_and_exit(NULL, EXIT_SUCCESS, &data);
 	}
 	else if (data.input_count == 3)
 	{
 		sort_3(&data);
+		free_and_exit(NULL, EXIT_SUCCESS, &data);
 	}
+	sort_array(data.input, data.input_count);
+	sort_stacks(&data);
 	free_and_exit(NULL, EXIT_SUCCESS, &data);
 }

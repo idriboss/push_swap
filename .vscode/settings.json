@@ -9,6 +9,9 @@
 		"commands.h": "c",
 		"push_swap.h": "c",
 		"fcntl.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"bitset": "c",
+		"chrono": "c",
+		"algorithm": "c"
 	}
 }

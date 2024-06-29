@@ -11,9 +11,7 @@ void	sort_2(t_data *data)
 		return ;
 	}
 	if (is_sorted(data) == false)
-	{
 		swap_a(data);
-	}
 }
 
 void	sort_3(t_data *data)

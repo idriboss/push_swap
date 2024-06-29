@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 07:54:59 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/29 08:54:01 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/06/29 18:42:39 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 
 typedef struct t_node
 {
-	int		nb;
 	struct t_node *next;
+	struct t_node *target;
+	int		nb;
+	int		cost;
 }	t_node;
 
 typedef struct t_stack
@@ -55,5 +57,12 @@ void	sort_3(t_data *data);
 void	free_and_exit(const char *err, int code, t_data *data);
 bool	is_sorted(t_data *data);
 void	input_to_array(char **argv, t_data *data);
+void	sort_array(int array[], int length);
+int		stack_size(t_stack *stack);
+void	sort_stacks(t_data *data);
+void	calc_all_cost(t_data *data);
+t_node	*closest_higher(t_node *node, t_stack *stack);
+void	insert(t_data *data);
+void	rotate_to_top(t_node *node, t_stack *stack, t_data *data);
 
 #endif
