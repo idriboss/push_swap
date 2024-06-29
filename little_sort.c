@@ -7,7 +7,6 @@ void	sort_2(t_data *data)
 	node = data->stack_a->first;
 	if (node == NULL || node->next == NULL)
 	{
-		printf("try to sort non 2 nodes stack with sort_2");
 		return ;
 	}
 	if (is_sorted(data) == false)

@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 08:36:03 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/29 09:09:39 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/06/29 19:48:18 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	input_to_array(char **argv, t_data *data)
 		++i;
 	}
 	if (ft_atol(data->join_args) == 0)
-		free_and_exit("input invalid", EXIT_FAILURE, data);
+		free_and_exit("Error\n", EXIT_FAILURE, data);
 	parse(data->join_args, data);
 }
 
@@ -49,7 +49,7 @@ void	parse(char *arg, t_data *data)
 	while (arg[i] != '\0')
 	{
 		if ((arg[i] < '0' || arg[i] > '9') && arg[i] != '+' && arg[i] != '-')
-			free_and_exit("input invalid", EXIT_FAILURE, data);
+			free_and_exit("Error", EXIT_FAILURE, data);
 		data->input = ft_realloc(data->input, j, j + 1, sizeof(int));
 		if (data->input == NULL)
 			free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
@@ -67,8 +67,6 @@ void	parse(char *arg, t_data *data)
 	data->input_count = j;
 }
 
-#include <stdio.h>
-
 void	check_number(long num, int num_count, t_data *data, char *arg)
 {
 	int	i;
@@ -79,14 +77,14 @@ void	check_number(long num, int num_count, t_data *data, char *arg)
 	while (arg[i] >= '0' && arg[i] <= '9')
 		i++;
 	if (i > 12)
-		free_and_exit("number too large", EXIT_FAILURE, data);
+		free_and_exit("Error", EXIT_FAILURE, data);
 	if (num < INT_MIN || num > INT_MAX)
-		free_and_exit("number too large", EXIT_FAILURE, data);
+		free_and_exit("Error", EXIT_FAILURE, data);
 	i = 0;
 	while (i < num_count)
 	{
 		if (data->input[i] == (int)num)
-			free_and_exit("number already exist", EXIT_FAILURE, data);
+			free_and_exit("Error", EXIT_FAILURE, data);
 		i++;
 	}
 }

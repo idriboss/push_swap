@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 18:04:28 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/29 19:03:54 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/06/29 19:16:58 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	calc_all_cost(t_data *data)
 
 int	cost(t_node *node, t_data *data)
 {
-	t_node	*closest;
 	int	cost;
 
 	cost = calc_cost_to_up(node, data->stack_b);
@@ -38,35 +37,36 @@ int	cost(t_node *node, t_data *data)
 		node->target = find_lowest(data->stack_a);
 	else
 		node->target = closest_higher(node, data->stack_a);
-	cost += best_options(node, node->target, &cost, data);
+	cost += calc_cost_to_up(node->target, data->stack_a);
+	// cost += best_options(node, node->target, &cost, data);
 	++cost;
 	return (cost);
 }
 
-int	best_options(t_node *node, t_node *target, int cost, t_data *data)
-{
-	int count;
-	int	i;
+// int	best_options(t_node *node, t_node *target, int cost, t_data *data)
+// {
+// 	int count;
+// 	int	i;
 
-	i = -1;
-	if (find_index(node, data->stack_b) > stack_size(data->stack_b) / 2)
-	{
-		while (++i < cost && target->next != NULL)
-			target = target->next;
-		if (target->next == NULL && i < cost)
-			return (1);
-		return (calc_cost_to_up(target, data->stack_a));
-	}
-	else
-	{
-		i = -1;
-		count = find_index(target);
-		while (++i < cost && count > 0)
-			--count;
-		if ()
-		return (count);
-	}
-}
+// 	i = -1;
+// 	if (find_index(node, data->stack_b) > stack_size(data->stack_b) / 2)
+// 	{
+// 		while (++i < cost && target->next != NULL)
+// 			target = target->next;
+// 		if (target->next == NULL && i < cost)
+// 			return (1);
+// 		return (calc_cost_to_up(target, data->stack_a));
+// 	}
+// 	else
+// 	{
+// 		i = -1;
+// 		count = find_index(target);
+// 		while (++i < cost && count > 0)
+// 			--count;
+// 		if ()
+// 		return (count);
+// 	}
+// }
 
 int	calc_cost_to_up(t_node *node, t_stack *stack)
 {

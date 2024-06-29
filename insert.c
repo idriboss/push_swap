@@ -28,11 +28,7 @@ void	rotate_to_top(t_node *node, t_stack *stack, t_data *data)
 			if (stack == data->stack_b)
 				r_rotate_b(data);
 			else
-			{
-				if (node->target != data->stack_a->first && node->)
-					r_rotate_ab;
 				r_rotate_a(data);
-			}
 		}
 	}
 	else
