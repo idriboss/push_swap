@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:53:57 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 16:53:58 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 21:29:08 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char **argv)
 	ft_memset(&data, 0, sizeof(t_data));
 	input_to_array(argv, &data);
 	init_stacks(&data);
+	if (is_sorted(&data) == true)
+		free_and_exit(NULL, EXIT_FAILURE, &data);
 	if (data.input_count == 2)
 	{
 		sort_2(&data);

@@ -6,14 +6,14 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:57:07 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 17:06:24 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 22:39:54 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "commands.h"
 
-char	**get_commands(void);
+char	**get_commands(t_data *data);
 void	execute(char *command, t_data *data);
 void	sort(t_data *data);
 bool	is_sorted(t_data *data);
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		print_err_and_exit("ERROR", EXIT_FAILURE, false);
 	ft_memset(&data, 0, sizeof(t_data));
-	data.commands = get_commands();
+	data.commands = get_commands(&data);
 	input_to_array(argv, &data);
 	init_stacks(&data);
 	sort(&data);
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 		free_and_exit("KO", EXIT_SUCCESS, &data);
 }
 
-char	**get_commands(void)
+char	**get_commands(t_data *data)
 {
 	char	**commands;
 	char	*output;
@@ -51,6 +51,7 @@ char	**get_commands(void)
 		temp = get_next_line(0);
 		if (temp == NULL)
 			break ;
+		check_input(temp, output, data);
 		output = ft_re_strjoin(output, temp);
 		free(temp);
 		if (output == NULL)

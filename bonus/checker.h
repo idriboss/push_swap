@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 07:54:59 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 17:06:04 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 22:39:17 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	free_and_exit(const char *err, int code, t_data *data);
 void	input_to_array(char **argv, t_data *data);
 void	free_and_exit(const char *err, int code, t_data *data);
 bool	is_sorted(t_data *data);
+void	check_input(char *temp, char *to_free, t_data *data);
 
 #endif
