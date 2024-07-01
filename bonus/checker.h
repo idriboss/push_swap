@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 07:54:59 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 16:57:02 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 17:06:04 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CHECKER_H
 
 # include "../libft/libft.h"
-# include "commands.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>

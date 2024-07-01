@@ -6,11 +6,12 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:57:07 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 16:57:08 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 17:06:24 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#include "commands.h"
 
 char	**get_commands(void);
 void	execute(char *command, t_data *data);

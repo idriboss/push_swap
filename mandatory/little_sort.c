@@ -6,11 +6,12 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:48:06 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 16:48:07 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 17:05:40 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "commands.h"
 
 void	sort_2(t_data *data)
 {

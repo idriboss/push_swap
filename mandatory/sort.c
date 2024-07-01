@@ -6,11 +6,12 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:55:38 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 16:55:39 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 17:04:14 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "commands.h"
 
 void	higher_half_to_b(t_data *data);
 void	lowest_half_to_b(t_data *data);

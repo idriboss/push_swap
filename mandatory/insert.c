@@ -6,11 +6,12 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:48:03 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 16:48:04 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/01 17:05:47 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "commands.h"
 
 t_node	*find_cheapest(t_stack *stack);
 
