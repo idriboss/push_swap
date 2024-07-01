@@ -12,6 +12,11 @@
 		"libft.h": "c",
 		"bitset": "c",
 		"chrono": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"checker.h": "c",
+		"*.tcc": "c",
+		"list": "c",
+		"unistd.h": "c",
+		"ratio": "c"
 	}
 }

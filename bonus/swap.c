@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 02:14:13 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/27 02:55:19 by ibaby            ###   ########.fr       */
+/*   Created: 2024/07/01 16:59:56 by ibaby             #+#    #+#             */
+/*   Updated: 2024/07/01 16:59:57 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "checker.h"
 
-void	*ft_realloc(void *buffer, int buffer_size, size_t size,
-		size_t sizeof_type)
+void	swap(t_stack *stack)
 {
-	unsigned char	*ptr;
+	t_node	*temp;
 
-	ptr = ft_calloc(size, sizeof_type);
-	if (ptr == NULL)
-	{
-		free(buffer);
-		return (NULL);
-	}
-	else if (buffer != NULL)
-	{
-		ft_memcpy(ptr, buffer, buffer_size * sizeof_type);
-		free(buffer);
-	}
-	return (ptr);
+	temp = stack->first->next;
+	stack->first->next = stack->first->next->next;
+	temp->next = stack->first;
+	stack->first = temp;
+}
+
+void	swap_a(t_data *data)
+{
+	swap(data->stack_a);
+}
+
+void	swap_b(t_data *data)
+{
+	swap(data->stack_b);
+}
+
+void	swap_ab(t_data *data)
+{
+	swap_a(data);
+	swap_b(data);
 }
