@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:57:07 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 22:39:54 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 08:21:21 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc < 2)
-		print_err_and_exit("ERROR", EXIT_FAILURE, false);
+		print_err_and_exit("Error", EXIT_FAILURE, false);
 	ft_memset(&data, 0, sizeof(t_data));
-	data.commands = get_commands(&data);
+	data.argv = argv;
 	input_to_array(argv, &data);
 	init_stacks(&data);
+	data.commands = get_commands(&data);
 	sort(&data);
 	if (is_sorted(&data) == true)
 		free_and_exit("OK", EXIT_SUCCESS, &data);
@@ -39,28 +40,17 @@ char	**get_commands(t_data *data)
 {
 	char	**commands;
 	char	*output;
-	char	*temp;
-	int		i;
 
-	i = 0;
 	output = ft_strdup("");
 	if (output == NULL)
-		print_err_and_exit(MALLOC_FAILED, EXIT_FAILURE, false);
-	while (1)
-	{
-		temp = get_next_line(0);
-		if (temp == NULL)
-			break ;
-		check_input(temp, output, data);
-		output = ft_re_strjoin(output, temp);
-		free(temp);
-		if (output == NULL)
-			print_err_and_exit(MALLOC_FAILED, EXIT_FAILURE, false);
-	}
+		free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
+	get_lines(&output, data);
+	if (output == NULL)
+		free_and_exit("Error", EXIT_FAILURE, data);
 	commands = ft_split(output, '\n');
-	free(output);
+	ft_free((void **)&output);
 	if (commands == NULL)
-		print_err_and_exit("split function failed", EXIT_FAILURE, false);
+		free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
 	return (commands);
 }
 

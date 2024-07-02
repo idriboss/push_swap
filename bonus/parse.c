@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 08:36:03 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 22:38:45 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 08:21:14 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	input_to_array(char **argv, t_data *data)
 	data->join_args = ft_strdup(argv[1]);
 	i = 2;
 	while (argv[i] != NULL)
-	{	
+	{
 		data->join_args = multi_re_strjoin(3, data->join_args, " ", argv[i]);
 		if (data->join_args == NULL)
 			free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
@@ -39,10 +39,9 @@ void	get_num(char *number, int index, t_data *data)
 {
 	long	num;
 
-	if (*number && (*number == '-' || *number == '+')
-		&& (*(number + 1) < '0' || *(number + 1) > '9'))
+	if (*number && (*number == '-' || *number == '+') && (*(number + 1) < '0'
+			|| *(number + 1) > '9'))
 		free_and_exit("Error", EXIT_FAILURE, data);
-	
 	data->input = ft_realloc(data->input, index, index + 1, sizeof(int));
 	if (data->input == NULL)
 		free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
@@ -53,8 +52,8 @@ void	get_num(char *number, int index, t_data *data)
 
 void	parse(char *arg, t_data *data)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -62,8 +61,8 @@ void	parse(char *arg, t_data *data)
 	{
 		while (arg[i] == ' ')
 			++i;
-		if (i > 0 && arg[i] && arg[i] != ' ' && (arg[i - 1] >= '0'
-			&& arg[i - 1] <= '9'))
+		if (i > 0 && arg[i] && arg[i] != ' ' && (arg[i - 1] >= '0' && arg[i
+					- 1] <= '9'))
 			free_and_exit("Error", EXIT_FAILURE, data);
 		get_num(arg + i, j, data);
 		if (arg[i] == '-' || arg[i] == '+')
@@ -116,7 +115,7 @@ void	check_input(char *temp, char *to_free, t_data *data)
 		++check;
 	if (check != 1)
 	{
-		free(temp);
+		ft_free((void **)&temp);
 		ft_free((void **)&to_free);
 		free_and_exit("Error", EXIT_FAILURE, data);
 	}

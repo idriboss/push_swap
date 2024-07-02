@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:09:30 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 14:16:51 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 07:28:28 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,32 @@ void	destroy_stack(t_stack *stack)
 		return ;
 	if (stack->first == NULL)
 	{
-		free(stack);
+		ft_free((void **)&stack);
 		return ;
 	}
 	temp = stack->first;
 	node = temp->next;
 	if (node == NULL)
 	{
-		free(temp);
-		free(stack);
+		ft_free((void **)&temp);
+		ft_free((void **)&stack);
 		return ;
 	}
 	while (node != NULL)
 	{
 		node = temp->next;
-		free(temp);
+		ft_free((void **)&temp);
 		temp = node;
 	}
-	free(stack);
+	ft_free((void **)&stack);
 }
 
 void	free_and_exit(const char *err, int code, t_data *data)
 {
 	destroy_stack(data->stack_a);
 	destroy_stack(data->stack_b);
-	free(data->input);
-	free(data->join_args);
+	ft_free((void **)&data->input);
+	ft_free((void **)&data->join_args);
 	free_2d_array((void ***)&data->commands);
 	print_err_and_exit(err, code, false);
 }

@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 08:36:03 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 22:19:14 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 08:20:14 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	get_num(char *number, int index, t_data *data)
 	if (*number && (*number == '-' || *number == '+')
 		&& (*(number + 1) < '0' || *(number + 1) > '9'))
 		free_and_exit("Error", EXIT_FAILURE, data);
-	
 	data->input = ft_realloc(data->input, index, index + 1, sizeof(int));
 	if (data->input == NULL)
 		free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
@@ -62,7 +61,7 @@ void	parse(char *arg, t_data *data)
 		while (arg[i] == ' ')
 			++i;
 		if (i > 0 && arg[i] && arg[i] != ' ' && (arg[i - 1] >= '0'
-			&& arg[i - 1] <= '9'))
+				&& arg[i - 1] <= '9'))
 			free_and_exit("Error", EXIT_FAILURE, data);
 		get_num(arg + i, j, data);
 		if (arg[i] == '-' || arg[i] == '+')

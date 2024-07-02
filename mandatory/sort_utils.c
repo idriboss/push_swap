@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:55:41 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/01 16:55:42 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 07:18:19 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ bool	is_sorted(t_data *data)
 	if (data->stack_b->first && data->stack_a->first)
 		return (false);
 	node = data->stack_a->first;
+	if (node->next == NULL && data->stack_b->first == NULL)
+		return (true);
 	if (node->nb > node->next->nb)
 		return (false);
 	while (node->next)

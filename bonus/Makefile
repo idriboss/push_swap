@@ -14,7 +14,7 @@ NAME = ../checker
 
 CC = cc
 
-FLAGS = -Wall -Werror -Wextra -O3
+FLAGS = -Wall -Werror -Wextra -g3
 
 LIBFT_PATH = ../libft/
 
