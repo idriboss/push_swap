@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:57:10 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/02 07:50:52 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 09:52:24 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	get_lines(char **output, t_data *data)
 	int		i;
 	char	*temp;
 
-	i = 0;
-	temp = get_next_line(0);
+	free((i = 0, temp = get_next_line(0), NULL));
 	if (temp == NULL)
 	{
 		ft_free((void **)output);
 		if (is_sorted(data) == true)
 			free_and_exit("OK", EXIT_SUCCESS, data);
+		free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
 	}
 	if (*temp == '\n')
 		free_and_exit("KO", EXIT_FAILURE, data);

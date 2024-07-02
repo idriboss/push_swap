@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 02:11:07 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/27 02:11:08 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 09:41:52 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ char	*re_join_get_next_line(int fd, char **str_address)
 	if (gnl == NULL)
 		return (*str_address);
 	*str_address = ft_re_strjoin(*str_address, gnl);
-	ft_free((void **)&gnl);
+	free(gnl);
 	return (*str_address);
 }

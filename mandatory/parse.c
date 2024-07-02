@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 08:36:03 by ibaby             #+#    #+#             */
-/*   Updated: 2024/07/02 08:20:14 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/02 09:35:27 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	input_to_array(char **argv, t_data *data)
 	if (argv[1] == NULL || argv[1][0] == '\0')
 		free_and_exit("Error", EXIT_FAILURE, data);
 	data->join_args = ft_strdup(argv[1]);
+	if (data->join_args == NULL)
+		free_and_exit(MALLOC_FAILED, EXIT_FAILURE, data);
 	i = 2;
 	while (argv[i] != NULL)
 	{	
