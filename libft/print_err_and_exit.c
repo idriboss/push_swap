@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 02:11:17 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/27 02:11:19 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/07/03 17:45:23 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_err_and_exit(const char *err, int code, bool erno)
 	}
 	else if (err != NULL)
 	{
-		ft_putendl_fd((char *)err, STDERR_FILENO);
+		ft_putendl_fd((char *)err, 1);
 	}
 	exit(code);
 }
